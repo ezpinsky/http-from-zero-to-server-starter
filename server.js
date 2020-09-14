@@ -1,6 +1,6 @@
 const http = require("http");
 const fs = require("fs");
-const lameFile = fs.readFile("lame-bonus-redirect.html", "utf8", (err, data) => {
+const lameFile = fs.readFileSync("lame-bonus-redirect.html", "utf8", (err, data) => {
 	if (err) throw err;
 });
 
@@ -23,7 +23,7 @@ http.createServer(function (req, res) {
 	}
 
 	if (req.url === "/Bonus/Webpage") {
-		res.writeHead(302, { "Content-Type": "text/html" });
+		res.writeHead(200, { "Content-Type": "text/html" });
 		res.write(lameFile);
 		res.end();
 	}
@@ -39,7 +39,7 @@ http.createServer(function (req, res) {
 			res.writeHead(201);
 			res.end();
 		} else {
-			console.log("NOT ALLOWED YOU DUMMYFACE!");
+			console.log("NOT ALLOWED YOU DUMMYFACE! :P");
 			res.writeHead(404);
 			res.end();
 		}
